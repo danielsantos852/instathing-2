@@ -9,6 +9,31 @@ def main():
     pass
 
 
+# Refine Dataframe (Social Soul) function
+def refine_dataframe_social_soul(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
+    
+    # Set columns of interest
+    columns_of_interest = [
+        'offerName',
+        #'sellerId',
+        #'sellerThumbnail',
+        'offerLink',
+        'offerThumbnail',
+        'priceFrom',
+        #'sellerName',
+        'priceTo',
+        #'sku',
+        #'categoryName',
+        #'categoryId',
+    ]
+    
+    # Create refined dataframe using columns of interest
+    df_refined = df.loc[:,columns_of_interest]
+    
+    # Return refined dataframe
+    return df_refined
+
+
 # Import XML as DataFrame function
 def import_xml_as_df(path:str='') -> pd.core.frame.DataFrame:
     
