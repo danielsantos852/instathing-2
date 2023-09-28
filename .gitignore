@@ -6,6 +6,6 @@
 
 
 # Ignore temp folder files
-#/temp/*
+/temp/*
 !/temp/.gitkeep
 !/temp/ig_stories_images/.gitkeep
