@@ -1,0 +1,11 @@
+# Ignore virtual environment folder(s)
+/.venv/
+
+# Ignore any __pycache__ folders
+**/__pycache__/
+
+
+# Ignore temp folder files
+#/temp/*
+!/temp/.gitkeep
+!/temp/ig_stories_images/.gitkeep
