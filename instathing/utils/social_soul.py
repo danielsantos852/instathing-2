@@ -42,8 +42,8 @@ def refine_dataframe(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     return df
 
 
-# Add Instagram Stories Images To Dataframe function
-def add_ig_stories_images_to_df(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
+# Add Instagram Stories To Pandas Dataframe function
+def add_ig_stories_to_df(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     
     # Create empty list of IG Stories images
     ig_stories_images = []
@@ -53,7 +53,7 @@ def add_ig_stories_images_to_df(df:pd.core.frame.DataFrame) -> pd.core.frame.Dat
         
         # Generate IG Stories image
         ig_stories_images.append(
-            generate_ig_stories_image(
+            generate_ig_story_image(
                 offer_thumbnail= df.loc[i, 'offerThumbnail'],
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],
