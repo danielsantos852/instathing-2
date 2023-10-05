@@ -6,33 +6,6 @@ import numpy as np
 from .ig_image_processing import generate_ig_stories_image
 
 
-# Add Instagram Stories Images To Dataframe function
-def add_ig_stories_images_to_df(df_offers:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
-    
-    # Create empty list of IG Stories images
-    ig_stories_images = []
-    
-    # For each offer in offers dataframe:
-    for i in range(len(df_offers)):
-        
-        # Generate IG Stories image
-        ig_stories_images.append(
-            generate_ig_stories_image(
-                offer_thumbnail= df_offers.loc[i, 'offerThumbnail'],
-                offer_name= df_offers.loc[i, 'offerName'],
-                offer_price_from= df_offers.loc[i, 'priceFrom'],
-                offer_price_to= df_offers.loc[i, 'priceTo'],
-                file_path= f'../temp/ig_stories_images/offer_{i}.png',
-            )
-        )
-    
-    # Add IG Stories images list as column in dataframe        
-    df_offers['storiesImage'] = ig_stories_images
-    
-    # Return dataframe
-    return df_offers
-
-
 # Refine Dataframe (Social Soul) function
 def refine_dataframe(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     
@@ -66,4 +39,38 @@ def refine_dataframe(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
     
     
     # Return refined dataframe
+    return df
+
+
+# Add Instagram Stories Images To Dataframe function
+def add_ig_stories_images_to_df(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
+    
+    # Create empty list of IG Stories images
+    ig_stories_images = []
+    
+    # For each offer in offers dataframe:
+    for i in range(len(df)):
+        
+        # Generate IG Stories image
+        ig_stories_images.append(
+            generate_ig_stories_image(
+                offer_thumbnail= df.loc[i, 'offerThumbnail'],
+                offer_name= df.loc[i, 'offerName'],
+                offer_price_from= df.loc[i, 'priceFrom'],
+                offer_price_to= df.loc[i, 'priceTo'],
+                file_path= f'../temp/ig_stories_images/offer_{i}.png',
+            )
+        )
+    
+    # Add IG Stories images list as column in dataframe
+    df['storiesImage'] = ig_stories_images
+    
+    # Drop (now) unnecessary columns
+    df.drop(
+        labels=['offerThumbnail', 'priceFrom', 'priceTo'],
+        axis='columns',
+        inplace=True
+    )
+    
+    # Return dataframe
     return df
