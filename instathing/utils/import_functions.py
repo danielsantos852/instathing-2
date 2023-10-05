@@ -3,8 +3,8 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 
 
-# Import XML as DataFrame function
-def import_xml_as_df(path:str='') -> pd.core.frame.DataFrame:
+# Import Pandas DataFrame from XML file function
+def import_dataframe_from_xml(path:str) -> pd.core.frame.DataFrame:
     
     # Extracted from:
     # https://saturncloud.io/blog/converting-xml-to-python-dataframe-a-comprehensive-guide/
