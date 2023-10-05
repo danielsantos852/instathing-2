@@ -1,4 +1,4 @@
-from .export_functions import *
+from .exporting import *
 from .ig_image_processing import *
-from .import_functions import *
+from .importing import *
 from .social_soul import *
