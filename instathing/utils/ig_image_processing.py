@@ -34,9 +34,9 @@ def generate_ig_story_image(
     
     # Prepare offer price text
     if offer_price_from == None:
-        price_text = f'Por apenas R${offer_price_to:.2f}!'
+        price_text = f'Por apenas R${offer_price_to:.2f}'
     else:
-        price_text = f'De R${offer_price_from:.2f} por apenas R${offer_price_to:.2f}!'
+        price_text = f'De R${offer_price_from:.2f} por apenas R${offer_price_to:.2f}'
     
     # Add offer price text to IG story image
     im_ig_story = add_text_to_image(
