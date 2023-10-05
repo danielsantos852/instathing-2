@@ -26,3 +26,13 @@ def import_xml_as_df(path:str='') -> pd.core.frame.DataFrame:
     
     # Return DataFrame
     return df
+
+
+# Import Pandas DataFrame from Parquet file function
+def import_dataframe_from_parquet(path:str) -> pd.core.frame.DataFrame:
+
+    # Load dataframe from parquet file
+    df = pd.read_parquet(path=path)
+    
+    # Return loaded dataframe
+    return df
