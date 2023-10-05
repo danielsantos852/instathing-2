@@ -5,7 +5,8 @@ import requests
 from textwrap import wrap
 
 
-def generate_ig_stories_image(
+# Generate Instagram Story Image function
+def generate_ig_story_image(
     offer_thumbnail:str = None,
     offer_name:str = None,
     offer_price_from:str = None,
@@ -13,24 +14,17 @@ def generate_ig_stories_image(
     file_path:str = None
 ) -> str:
     
-    # STEP 1: Create empty IG Stories image from template
-    # Create empty story from template
-    im_ig_stories = Image.open(fp='../resources/story_template_720x1280_final.png')
+    # Create empty IG story image from template
+    im_ig_story = Image.open(fp='../resources/story_template_720x1280_final.png')
     
-    
-    # STEP 2: Add offer thumbnail to IG Stories image
-    # Get offer thumbnail
+    # Add offer thumbnail to IG story image
     im_thumbnail = Image.open(requests.get(offer_thumbnail, stream=True).raw)
-    # Resize offer thumbnail
     im_thumbnail = im_thumbnail.resize(size=(640,640))
-    # Paste offer thumbnail to story image
-    im_ig_stories.paste(im=im_thumbnail,box=(40, 130))
+    im_ig_story.paste(im=im_thumbnail,box=(40, 130))
     
-    
-    # STEP 3: Add offer name to IG Stories image
-    # Add offer name
-    im_ig_stories = add_text_to_image(
-        im=im_ig_stories,
+    # Add offer name to IG story image
+    im_ig_story = add_text_to_image(
+        im=im_ig_story,
         font_size=40,
         x=27.5, # (10+17.5)
         y=827.5, # (100+700+20+7.5)
@@ -38,17 +32,15 @@ def generate_ig_stories_image(
         text_align='left'
     )
     
-    
-    # STEP 4: Add offer price to IG Stories image
-    # If no priceFrom:
+    # Prepare offer price text
     if offer_price_from == None:
         price_text = f'Por apenas R${offer_price_to:.2f}!'
-    # Else (if priceFrom):
     else:
         price_text = f'De R${offer_price_from:.2f} por apenas R${offer_price_to:.2f}!'
-    # Add offer price to IG Stories image
-    im_ig_stories = add_text_to_image(
-        im=im_ig_stories,
+    
+    # Add offer price text to IG story image
+    im_ig_story = add_text_to_image(
+        im=im_ig_story,
         font_size=37.5,
         x=27.5, # (10+17.5)
         y=1062.5, # (100+700+20+210+20+12.5)
@@ -56,12 +48,10 @@ def generate_ig_stories_image(
         text_align='left'
     )
     
+    # Save IG story image as PNG file
+    im_ig_story.save(fp=file_path, format='png')
     
-    # STEP 5: Save IG Stories image to temp folder
-    im_ig_stories.save(fp=file_path, format='png')
-    
-    
-    # Return path fo IG Stories image
+    # Return path to IG story image
     return file_path
 
 

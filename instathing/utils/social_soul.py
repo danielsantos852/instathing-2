@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Internal imports
-from .ig_image_processing import generate_ig_stories_image
+from .ig_image_processing import generate_ig_story_image
 
 
 # Refine Dataframe (Social Soul) function
