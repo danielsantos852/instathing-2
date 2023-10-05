@@ -9,3 +9,4 @@
 /temp/*
 !/temp/.gitkeep
 !/temp/ig_stories_images/.gitkeep
+!/temp/parquet/.gitkeep
