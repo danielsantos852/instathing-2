@@ -1,5 +1,6 @@
 # External imports
 import pandas as pd
+import json
 import xml.etree.ElementTree as ET
 
 
@@ -36,3 +37,22 @@ def import_dataframe_from_parquet(path:str) -> pd.core.frame.DataFrame:
     
     # Return loaded dataframe
     return df
+
+
+# Import Credentials from JSON function
+def import_credentials_from_json(path:str) -> dict:
+
+    # Try to:
+    try:
+        
+        # Open JSON file in read mode
+        with open(path, 'r') as file:
+            
+            # Return file contents as a dict
+            return json.loads(file.read())
+    
+    # If file not found:
+    except FileNotFoundError:
+        
+        # Return empty dictionary
+        return {}
