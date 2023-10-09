@@ -1,11 +1,13 @@
 # Ignore virtual environment folder(s)
 /.venv/
 
-# Ignore any __pycache__ folders
+# Ignore any "__pycache__" folders
 **/__pycache__/
 
+# Ignore contents of "secrets" folder
+/secrets/*
 
-# Ignore temp folder files
+# Ignore contents of "temp" folder
 /temp/*
 !/temp/.gitkeep
 !/temp/ig_stories_images/.gitkeep
