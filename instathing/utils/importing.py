@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 
 # Import Pandas DataFrame from XML file function
-def import_dataframe_from_xml(path:str) -> pd.core.frame.DataFrame:
+def dataframe_from_xml(path:str) -> pd.core.frame.DataFrame:
     
     # Extracted from:
     # https://saturncloud.io/blog/converting-xml-to-python-dataframe-a-comprehensive-guide/
@@ -30,7 +30,7 @@ def import_dataframe_from_xml(path:str) -> pd.core.frame.DataFrame:
 
 
 # Import Pandas DataFrame from Parquet file function
-def import_dataframe_from_parquet(path:str) -> pd.core.frame.DataFrame:
+def dataframe_from_parquet(path:str) -> pd.core.frame.DataFrame:
 
     # Load dataframe from parquet file
     df = pd.read_parquet(path=path)
@@ -40,7 +40,7 @@ def import_dataframe_from_parquet(path:str) -> pd.core.frame.DataFrame:
 
 
 # Import Credentials from JSON function
-def import_credentials_from_json(path:str) -> dict:
+def credentials_from_json(path:str) -> dict:
 
     # Try to:
     try:
