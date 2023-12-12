@@ -58,7 +58,7 @@ def add_ig_stories_to_df(df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],
                 offer_price_to= df.loc[i, 'priceTo'],
-                file_path= f'../temp/ig_stories_images/offer_{i}.png',
+                file_path= f'./temp/ig_stories_images/offer_{i}.png',
             )
         )
     
