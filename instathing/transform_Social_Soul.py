@@ -1,5 +1,5 @@
 # Imports
-from utils import dataframe_from_xml, dataframe_refine, dataframe_generate_ig_stories, dataframe_to_parquet
+from utils import dataframe_from_xml, dataframe_refine, dataframe_generate_ig_story_images, dataframe_to_parquet
 
 
 # Global Variables
@@ -17,7 +17,7 @@ def main():
     df_offers_refined = dataframe_refine(df=df_offers_raw)
 
     # Add IG Stories images to dataframe (and drop unnecessary columns)
-    df_offers_ig_ready = dataframe_generate_ig_stories(df=df_offers_refined)
+    df_offers_ig_ready = dataframe_generate_ig_story_images(df=df_offers_refined)
 
     # Export Instagram-ready offers dataframe to parquet file
     dataframe_to_parquet(df=df_offers_ig_ready, path_to_file=PATH_TO_OUTPUT_PARQUET_FILE)
