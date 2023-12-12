@@ -1,30 +1,41 @@
-# External imports
+# Imports
 from PIL import Image, ImageDraw, ImageFont
 from PIL.PngImagePlugin import PngImageFile
 import requests
 from textwrap import wrap
 
 
-# Generate Instagram Story Image function
-def generate_ig_story_image(
+# Generate Instagram Story Image from Offer function
+def create_ig_story_image_from_offer(
+    base_image='./resources/story_template_720x1280_empty.png',
     offer_thumbnail:str = None,
     offer_name:str = None,
     offer_price_from:str = None,
     offer_price_to:str = None,
-    file_path:str = None
+    output_path:str = None
 ) -> str:
+    """ Generates a 720x1280 offer image fit for an IG story post.
     
-    # Create empty IG story image from template
-    im_ig_story = Image.open(fp='../resources/story_template_720x1280_final.png')
+    Keyword arguments:
+    base_image -- path to 720x1280 PNG/JPG image
+    offer_thumbnail -- url to product image
+    offer_name -- product description
+    offer_price_from -- product price (without discount)
+    offer_price_to -- product price (with discount)
+    output_path -- path to output image file
+    """
+
+    # Create new IG story image from template
+    im_story = Image.open(fp=base_image)
     
-    # Add offer thumbnail to IG story image
+    # Download and paste offer thumbnail to story image
     im_thumbnail = Image.open(requests.get(offer_thumbnail, stream=True).raw)
     im_thumbnail = im_thumbnail.resize(size=(640,640))
-    im_ig_story.paste(im=im_thumbnail,box=(40, 130))
+    im_story.paste(im=im_thumbnail,box=(40, 130))
     
     # Add offer name to IG story image
-    im_ig_story = add_text_to_image(
-        im=im_ig_story,
+    im_story = add_text_to_image(
+        im=im_story,
         font_size=40,
         x=27.5, # (10+17.5)
         y=827.5, # (100+700+20+7.5)
@@ -41,8 +52,8 @@ def generate_ig_story_image(
         price_text = f'De R${offer_price_from:} por apenas R${offer_price_to}'
     
     # Add offer price text to IG story image
-    im_ig_story = add_text_to_image(
-        im=im_ig_story,
+    im_story = add_text_to_image(
+        im=im_story,
         font_size=37.5,
         x=27.5, # (10+17.5)
         y=1062.5, # (100+700+20+210+20+12.5)
@@ -51,16 +62,16 @@ def generate_ig_story_image(
     )
     
     # Save IG story image as PNG file
-    im_ig_story.save(fp=file_path, format='png')
+    im_story.save(fp=output_path, format='png')
     
-    # Return path to IG story image
-    return file_path
+    # Return path to story image file
+    return output_path
 
 
 # Add Text To Image function
 def add_text_to_image(
     im:PngImageFile,
-    font:str = '../resources/fonts/OpenSans-VariableFont_wdth,wght.ttf',
+    font:str = './resources/fonts/OpenSans-VariableFont_wdth,wght.ttf',
     font_size:int = 12,
     x:int = 0,
     y:int = 0,
