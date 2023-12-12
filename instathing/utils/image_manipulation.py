@@ -56,7 +56,7 @@ def create_ig_story_image_from_offer(
         im=im_story,
         font_size=37.5,
         x=27.5, # (10+17.5)
-        y=1062.5, # (100+700+20+210+20+12.5)
+        y=982.5, # (100+700+15+140+15+12.5)
         text=price_text,
         text_align='left'
     )
