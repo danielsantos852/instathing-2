@@ -1,6 +1,6 @@
 from .android import *
 from .execution import  *
 from .exporting import *
-from .ig_image_processing import *
+from .image_manipulation import *
 from .importing import *
 from .social_soul import *
