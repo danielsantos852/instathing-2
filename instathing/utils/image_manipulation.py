@@ -33,10 +33,13 @@ def create_ig_story_image_from_offer(
     im_thumbnail = im_thumbnail.resize(size=(640,640))
     im_story.paste(im=im_thumbnail,box=(40, 130))
     
-    # Clip offer name if too long
-    max_name_length = 54
+    # Clip offer name if max length exceeded
+    max_name_length = 50
     if len(offer_name) > max_name_length:
-        offer_name = f'{offer_name[:max_name_length-1-3]}...'
+        if offer_name[max_name_length-4]==' ':
+            offer_name = f'{offer_name[:max_name_length-4]}...'
+        else:
+            offer_name = f'{offer_name[:max_name_length-3]}...'
 
     # Add offer name to IG story image
     im_story = add_text_to_image(
