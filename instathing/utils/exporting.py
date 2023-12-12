@@ -5,7 +5,7 @@ import pyarrow.parquet as pq
 
 
 # Export Pandas DataFrame to Parquet file function
-def export_dataframe_to_parquet(df:pd.core.frame.DataFrame, path:str) -> None:
+def dataframe_to_parquet(df:pd.core.frame.DataFrame, path:str) -> None:
     
     # Create pyarrow table from pandas dataframe
     table = pa.Table.from_pandas(df)
