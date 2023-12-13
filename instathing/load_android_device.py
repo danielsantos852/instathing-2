@@ -1,6 +1,5 @@
 # Imports
-from utils import dataframe_from_parquet
-from utils import get_available_devices, connect_to_device, post_instagram_story
+from utils import dataframe_from_parquet, get_available_devices, connect_to_device, post_ig_story
 
 
 # Global variables
@@ -23,7 +22,7 @@ def main():
     for i in range(len(df_offers)):
 
         # Post offer as IG Story
-        post_instagram_story(
+        post_ig_story(
             device=device,
             offer_img_src=df_offers.loc[i, 'storiesImage'],
             offer_img_dest=OFFER_IMG_DEST,
