@@ -36,7 +36,7 @@ def dataframe_refine(df:DataFrame) -> DataFrame:
         #'categoryId',
     ]]
 
-    # Cast prices from STR to FLOAT64
+    # Cast prices from str to float64
     df['priceFrom'] = df['priceFrom'].astype('float64')
     df['priceTo'] = df['priceTo'].astype('float64')
 
