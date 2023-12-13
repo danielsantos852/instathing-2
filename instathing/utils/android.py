@@ -1,10 +1,265 @@
 # Imports
-from ppadb.client import Client as AdbClient # https://pypi.org/project/pure-python-adb/
-from ppadb.device import Device as AdbDevice
 import random
 import sys
 import time
+
+from ppadb.client import Client as AdbClient
+from ppadb.device import Device as AdbDevice
+
 from .execution import time_sleep
+
+
+# Global Variables (Configurations)
+PATH_TMP_STORY_IMG_ANDROID = ''
+LINK_STICKER_TEXT = 'ver oferta'
+
+
+# Post IG Story function
+def post_ig_story(
+    device:AdbDevice,
+    img_src:str,
+    url:str,
+    stckr_text=LINK_STICKER_TEXT,
+    close_friends=True,
+    restart_ig_app=True,
+) -> None:
+    """ Post IG story from computer through connected Android device using ADB.
+    
+        Keyword arguments:
+        device -- a ppadb Device object
+        img_src -- path to a 720x1280 PNG file
+        url -- a valid URL
+        stckr_text -- text to be displayed on IG link sticker
+        close_friends -- post to close friends only?
+        restart_ig_app -- restart IG app before posting?
+    """
+
+    # Copy post image from computer to android device
+    copy_file_to_device(path_origin=img_src,
+                        path_destination=PATH_TMP_STORY_IMG_ANDROID,
+                        device=device)
+
+    # (Re)Start IG app
+    launch_ig_app(device=device,
+                  force_stop=restart_ig_app)
+
+    # Get maximum values for x and y coordinates
+    x_max, y_max = get_device_screen_res(device)
+
+    # Wait
+    time_sleep(1.8)
+
+    # Click on "New post" button
+    input_touchscreen_tap(
+        device=device,
+        x0=0.416667,    # 450px/1080px
+        x1=0.583330,    # 630px/1080px
+        xmax=x_max,
+        y0=0.895834,    # 2150px/2400px
+        y1=0.9375,      # 2250px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=3.5)
+    
+    # Click on "Story" option
+    input_touchscreen_tap(
+        device=device,
+        x0=0.5712963,   # 617px/1080px
+        x1=0.574074,    # 620px/1080px
+        xmax=x_max,
+        y0=0.8625,      # 2070px/2400px
+        y1=0.885416,    # 2125px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=0.7)
+
+    # Click on "Open Phone Gallery" button
+    input_touchscreen_tap(
+        device=device,
+        x0=0.0092593,   # 10px/1080px
+        x1=0.157407,    # 170px/1080px
+        xmax=x_max,
+        y0=0.845834,    # 2030px/2400px
+        y1=0.904166,    # 2170px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=2.0)
+
+    # Select first gallery image
+    input_touchscreen_tap(
+        device=device,
+        x0=0.0092593,   # 10px/1080px
+        x1=0.3240741,   # 350px/1080px
+        xmax=x_max,
+        y0=0.2875,      # 690px/2400px
+        y1=0.533333,    # 1280px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=0.9)
+
+    # Click on "Add Sticker" button
+    input_touchscreen_tap(
+        device=device,
+        x0=0.5092593,   # 550px/1080px
+        x1=0.5925925,   # 640px/1080px
+        xmax=x_max,
+        y0=0.0625,      # 150px/2400px
+        y1=0.1,         # 240px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=0.5)
+
+    # Click on "Search" field
+    input_touchscreen_tap(
+        device=device,
+        x0=0.055556,    # 60px/1080px
+        x1=0.925925,    # 1000px/1080px
+        xmax=x_max,
+        y0=0.229167,    # 550px/2400px
+        y1=0.254166,    # 610px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=4.0)
+
+    # Type "link" on search field
+    device.shell('input text "link"')
+    
+    # Wait
+    time_sleep(t_base=0.5)
+
+    # Click on "Link" sticker
+    input_touchscreen_tap(
+        device=device,
+        x0=0.0462963,   # 50px/1080px
+        x1=0.212962,    # 230px/1080px
+        xmax=x_max,
+        y0=0.254167,    # 610px/2400px
+        y1=0.325,       # 780px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=0.5)
+
+    # Input sticker URL
+    device.shell(f'input text "{url}"')
+
+    # Wait
+    time_sleep(t_base=0.5)
+
+    # Click on "Customize sticker text"
+    input_touchscreen_tap(
+        device=device,
+        x0=0.055556,    # 60px/1080px
+        x1=0.925925,    # 1000px/1080px
+        xmax=x_max,
+        y0=0.304167,    # 730px/2400px
+        y1=0.316666,    # 760px/2400px
+        ymax=y_max
+    )
+
+    # Wait
+    time_sleep(t_base=0.5)
+
+    # Input sticker text
+    device.shell(f'input text "{stckr_text}"')
+
+    # Wait
+    time_sleep(t_base=1.7)
+
+    # Click on "Done"
+    input_touchscreen_tap(
+        device=device,
+        x0=0.851852,    # 920px/1080px
+        x1=0.981481,    # 1060px/1080px
+        xmax=x_max,
+        y0=0.1375,      # 330px/2400px
+        y1=0.1875,      # 450px/2400px
+        ymax=y_max
+    )
+
+    # Change link sticker color (click it 3x)
+    for _ in range(3):
+        
+        # Wait
+        time_sleep(t_base=1.2)
+
+        # Tap on link sticker (changes color)
+        input_touchscreen_tap(
+            device=device,
+            x0=0.444445,    # 480px/1080px
+            x1=0.555555,    # 600px/1080px
+            xmax=x_max,
+            y0=0.420834,    # 1010px/2400px
+            y1=0.45,        # 1080px/2400px
+            ymax=y_max
+        )
+
+    # Wait
+    time_sleep(t_base=1.0)
+
+    # Drag link sticker to desired position
+    input_touchscreen_swipe(
+        device=device,
+        x00=0.601851852,    # 650px/1080px
+        x01=0.680555555,    # 735px/1080px
+        xmax=x_max,
+        dx=0,
+        y00=0.420833334,    # 1010px/2400px
+        y01=0.458333333,    # 1100px/2400px
+        ymax=y_max,
+        dy=1060,
+        delay=1500
+    )
+
+    # Wait
+    time_sleep(t_base=2)
+
+    # If posting to Close Friends:
+    if close_friends==True:
+        
+        # Click on "Close Friends story" (and post offer)
+        input_touchscreen_tap(
+            device=device,
+            x0=0.3240741,   # 350px/1080px
+            x1=0.5092592,   # 550px/1080px
+            xmax=x_max,
+            y0=0.864584,    # 2075px/2400px
+            y1=0.880833,    # 2115px/2400px
+            ymax=y_max
+        )
+
+    # If posting to all followers:
+    else:
+
+        # Click on "Your story" (and post offer)
+        input_touchscreen_tap(
+            device=device,
+            x0=0.0694445,   # 75px/1080px
+            x1=0.2268518,   # 245px/1080px
+            xmax=x_max,
+            y0=0.864584,    # 2075px/2400px
+            y1=0.880833,    # 2115px/2400px
+            ymax=y_max
+        )
+
+    # Remove offer image from device's internal storage
+    device.shell(f'rm {PATH_TMP_STORY_IMG_ANDROID}')
+
+    # Return nothing
+    return None
 
 
 # Get Available Devices function
@@ -149,246 +404,42 @@ def input_touchscreen_swipe(
     return None
 
 
-# Post Instagram Story function
-def post_instagram_story(
-    device:AdbDevice,
-    offer_img_src:str,
-    offer_img_dest:str,
-    offer_url:str,
-    link_sticker_text='ver oferta',
-    close_friends=True,
-    restart_app=True,
-) -> None:
+# Copy File to Device function
+def copy_file_to_device(
+    src:str,
+    dest:str,
+    device:AdbDevice
+) -> str:
+    """ Push a file from computer to android device.
+    
+    Keyword arguments:
+    src -- full path to source file
+    dest -- full path for destination file
+    device -- a ppadb Device object
+    """
 
-    # Get device's screen resolution
-    x_max, y_max = get_device_screen_res(device)
-
-    # Push offer JPG file from computer to device
-    device.push(offer_img_src, offer_img_dest)
+    # Copy offer JPG file from computer to device
+    device.push(src, dest)
 
     # Make device "recognize" JPG file as media
-    device.shell(f'am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://{offer_img_dest}')
+    device.shell(f'am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://{dest}')
 
-    # If restart_app required:
-    if restart_app==True:
-        
-        # Stop Instagram app
+    # Return destination path
+    return dest
+
+
+# Launch IG App Android function
+def launch_ig_app(
+    device:AdbDevice,
+    force_stop=False,
+) -> None:
+    
+    # Force-stop IG app, if required:
+    if force_stop==True:
         device.shell('am force-stop com.instagram.android')
 
-    # Start Instagram app
+    # Start IG app
     device.shell('monkey -p com.instagram.android 1')
-
-    # Wait
-    time_sleep(1.8)
-
-    # Click on "New post" button
-    input_touchscreen_tap(
-        device=device,
-        x0=0.416667,    # 450px/1080px
-        x1=0.583330,    # 630px/1080px
-        xmax=x_max,
-        y0=0.895834,    # 2150px/2400px
-        y1=0.9375,      # 2250px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=3.5)
-    
-    # Click on "Story" option
-    input_touchscreen_tap(
-        device=device,
-        x0=0.5712963,   # 617px/1080px
-        x1=0.574074,    # 620px/1080px
-        xmax=x_max,
-        y0=0.8625,      # 2070px/2400px
-        y1=0.885416,    # 2125px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=0.7)
-
-    # Click on "Open Phone Gallery" button
-    input_touchscreen_tap(
-        device=device,
-        x0=0.0092593,   # 10px/1080px
-        x1=0.157407,    # 170px/1080px
-        xmax=x_max,
-        y0=0.845834,    # 2030px/2400px
-        y1=0.904166,    # 2170px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=2.0)
-
-    # Select first gallery image
-    input_touchscreen_tap(
-        device=device,
-        x0=0.0092593,   # 10px/1080px
-        x1=0.3240741,   # 350px/1080px
-        xmax=x_max,
-        y0=0.2875,      # 690px/2400px
-        y1=0.533333,    # 1280px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=0.9)
-
-    # Click on "Add Sticker" button
-    input_touchscreen_tap(
-        device=device,
-        x0=0.5092593,   # 550px/1080px
-        x1=0.5925925,   # 640px/1080px
-        xmax=x_max,
-        y0=0.0625,      # 150px/2400px
-        y1=0.1,         # 240px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=0.5)
-
-    # Click on "Search" field
-    input_touchscreen_tap(
-        device=device,
-        x0=0.055556,    # 60px/1080px
-        x1=0.925925,    # 1000px/1080px
-        xmax=x_max,
-        y0=0.229167,    # 550px/2400px
-        y1=0.254166,    # 610px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=4.0)
-
-    # Type "link" on search field
-    device.shell('input text "link"')
-    
-    # Wait
-    time_sleep(t_base=0.5)
-
-    # Click on "Link" sticker
-    input_touchscreen_tap(
-        device=device,
-        x0=0.0462963,   # 50px/1080px
-        x1=0.212962,    # 230px/1080px
-        xmax=x_max,
-        y0=0.254167,    # 610px/2400px
-        y1=0.325,       # 780px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=0.5)
-
-    # Input offer URL
-    device.shell(f'input text "{offer_url}"')
-
-    # Wait
-    time_sleep(t_base=0.5)
-
-    # Click on "Customize sticker text"
-    input_touchscreen_tap(
-        device=device,
-        x0=0.055556,    # 60px/1080px
-        x1=0.925925,    # 1000px/1080px
-        xmax=x_max,
-        y0=0.304167,    # 730px/2400px
-        y1=0.316666,    # 760px/2400px
-        ymax=y_max
-    )
-
-    # Wait
-    time_sleep(t_base=0.5)
-
-    # Input sticker text
-    device.shell(f'input text "{link_sticker_text}"')
-
-    # Wait
-    time_sleep(t_base=1.7)
-
-    # Click on "Done"
-    input_touchscreen_tap(
-        device=device,
-        x0=0.851852,    # 920px/1080px
-        x1=0.981481,    # 1060px/1080px
-        xmax=x_max,
-        y0=0.1375,      # 330px/2400px
-        y1=0.1875,      # 450px/2400px
-        ymax=y_max
-    )
-
-    # Change link sticker color (click it 3x)
-    for _ in range(3):
-        
-        # Wait
-        time_sleep(t_base=1.2)
-
-        # Tap on link sticker (changes color)
-        input_touchscreen_tap(
-            device=device,
-            x0=0.444445,    # 480px/1080px
-            x1=0.555555,    # 600px/1080px
-            xmax=x_max,
-            y0=0.420834,    # 1010px/2400px
-            y1=0.45,        # 1080px/2400px
-            ymax=y_max
-        )
-
-    # Wait
-    time_sleep(t_base=1.0)
-
-    # Drag link sticker to desired position
-    input_touchscreen_swipe(
-        device=device,
-        x00=0.601851852,    # 650px/1080px
-        x01=0.680555555,    # 735px/1080px
-        xmax=x_max,
-        dx=0,
-        y00=0.420833334,    # 1010px/2400px
-        y01=0.458333333,    # 1100px/2400px
-        ymax=y_max,
-        dy=1060,
-        delay=1500
-    )
-
-    # Wait
-    time_sleep(t_base=2)
-
-    # If posting to Close Friends:
-    if close_friends==True:
-        
-        # Click on "Close Friends story" (and post offer)
-        input_touchscreen_tap(
-            device=device,
-            x0=0.3240741,   # 350px/1080px
-            x1=0.5092592,   # 550px/1080px
-            xmax=x_max,
-            y0=0.864584,    # 2075px/2400px
-            y1=0.880833,    # 2115px/2400px
-            ymax=y_max
-        )
-
-    # If posting to all followers:
-    else:
-
-        # Click on "Your story" (and post offer)
-        input_touchscreen_tap(
-            device=device,
-            x0=0.0694445,   # 75px/1080px
-            x1=0.2268518,   # 245px/1080px
-            xmax=x_max,
-            y0=0.864584,    # 2075px/2400px
-            y1=0.880833,    # 2115px/2400px
-            ymax=y_max
-        )
-
-    # Remove offer image from device's internal storage
-    device.shell(f'rm {offer_img_dest}')
 
     # Return nothing
     return None
