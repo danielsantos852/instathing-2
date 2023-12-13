@@ -1,11 +1,6 @@
 # Imports
-from ppadb.client import Client as AdbClient # https://pypi.org/project/pure-python-adb/
-from ppadb.device import Device as AdbDevice
-import random
-from utils import import_dataframe_from_parquet
-from utils import get_available_devices, connect_to_device, get_device_screen_res
-from utils import input_touchscreen_tap, input_touchscreen_swipe, time_sleep
-from utils import post_instagram_story
+from utils import dataframe_from_parquet
+from utils import get_available_devices, connect_to_device, post_instagram_story
 
 
 # Global variables
@@ -19,9 +14,9 @@ LINK_STICKER_TEXT = 'ver oferta'
 def main():
     
     # Load offers dataframe
-    df_offers = import_dataframe_from_parquet(path=DF_SRC)
+    df_offers = dataframe_from_parquet(path=DF_SRC)
 
-    # Connect to first available android device from devices at 127.0.0.1:5037
+    # Connect to first available android device
     device = connect_to_device(get_available_devices()[0].serial)
 
     # For each offer in offers dataframe:
