@@ -4,7 +4,7 @@ from utils import dataframe_from_xml, dataframe_refine, dataframe_generate_ig_st
 
 # Global Variables
 PATH_TO_INPUT_SOCIAL_SOUL_XML = './resources/examples/LomadeeDownload_raw.xml'
-PATH_TO_OUTPUT_PARQUET_FILE = './temp/parquet/df_offers_ig_ready.parquet'
+DEFAULT_PATH_TO_OUTPUT_PARQUET_FILE = './temp/parquet/df_offers_ig_ready.parquet'
 
 
 # Main Function
@@ -20,7 +20,7 @@ def main():
     df_offers_ig_ready = dataframe_generate_ig_story_images(df=df_offers_refined)
 
     # Export Instagram-ready offers dataframe to parquet file
-    dataframe_to_parquet(df=df_offers_ig_ready, path_to_file=PATH_TO_OUTPUT_PARQUET_FILE)
+    dataframe_to_parquet(df=df_offers_ig_ready, path_to_file=DEFAULT_PATH_TO_OUTPUT_PARQUET_FILE)
 
 
 # If this is the script being run, call Main Function
