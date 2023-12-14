@@ -10,7 +10,7 @@ from .execution import time_sleep
 
 
 # Global Variables (Configurations)
-PATH_TMP_STORY_IMG_ANDROID = ''
+PATH_TMP_STORY_IMG_ANDROID = '/storage/emulated/0/DCIM/temp/offer.png'
 LINK_STICKER_TEXT = 'ver oferta'
 DEFAULT_SCREEN_WIDTH = 1080
 DEFAULT_SCREEN_HEIGHT = 2400
@@ -40,8 +40,8 @@ def post_ig_story(
         None
     """
     # Copy post image from computer to android device
-    copy_file_to_device(path_origin=img_src,
-                        path_destination=PATH_TMP_STORY_IMG_ANDROID,
+    copy_file_to_device(src=img_src,
+                        dest=PATH_TMP_STORY_IMG_ANDROID,
                         device=device)
 
     # (Re)Start IG app
