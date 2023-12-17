@@ -6,7 +6,8 @@ from .image_manipulation import create_ig_story_image_from_offer
 
 
 # Global Variables
-DEFAULT_STORY_IMAGES_OUTPUT_FOLDER = './temp/images/'
+DEFAULT_PATH_TO_STORY_TEMPLATE = './rsc/img/tmpl_story_720x1280_final.png'
+DEFAULT_STORY_IMAGES_OUTPUT_FOLDER = './tmp/img/'
 
 
 # Refine Dataframe function
@@ -62,8 +63,6 @@ def dataframe_generate_ig_story_images(
     Returns:
         df (DataFrame): same pandas dataframe with less columns but a new one
     """
-    # Parameters
-    path_to_story_template_image = './resources/images/story_template_720x1280_final.png'
 
     # Create empty list of IG Stories images
     ig_stories_images = []
@@ -74,7 +73,7 @@ def dataframe_generate_ig_story_images(
         # Generate IG Stories image
         ig_stories_images.append(
             create_ig_story_image_from_offer(
-                base_image=path_to_story_template_image,
+                base_image=DEFAULT_PATH_TO_STORY_TEMPLATE,
                 offer_thumbnail= df.loc[i, 'offerThumbnail'],
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],

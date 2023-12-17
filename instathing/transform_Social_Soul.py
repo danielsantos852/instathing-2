@@ -3,8 +3,8 @@ from utils import dataframe_from_xml, dataframe_refine, dataframe_generate_ig_st
 
 
 # Global Variables
-PATH_TO_INPUT_SOCIAL_SOUL_XML = './resources/examples/LomadeeDownload_raw.xml'
-DEFAULT_PATH_TO_OUTPUT_PARQUET_FILE = './temp/parquet/df_offers_ig_ready.parquet'
+PATH_TO_INPUT_SOCIAL_SOUL_XML = './rsc/xml_examples/LomadeeDownload_raw.xml'
+DEFAULT_PATH_TO_OUTPUT_PARQUET_FILE = './tmp/parquet/df_offers_ig_ready.parquet'
 
 
 # Main Function

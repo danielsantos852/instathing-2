@@ -6,15 +6,16 @@ from textwrap import wrap
 
 
 # Global Variables
-PATH_TO_DEFAULT_STORY_IMAGE = './resources/story_template_720x1280_empty.png'
+PATH_TO_DEFAULT_STORY_IMAGE = './rsc/img/tmpl_story_720x1280_blue.png'
 DEFAULT_STORY_IMAGE_OUTPUT_PATH = './temp/images/test.png'
+DEFAULT_PATH_TO_FONTS_FOLDER = './rsc/fnt/open_sans.ttf'
 
 
 # Generate Instagram Story Image from Offer function
 def create_ig_story_image_from_offer(
     output_path:str = DEFAULT_STORY_IMAGE_OUTPUT_PATH,
-    base_image:str =PATH_TO_DEFAULT_STORY_IMAGE,
-    offer_thumbnail:str = './resources/images/example_offer_thumbnail_640x640.png',
+    base_image:str = PATH_TO_DEFAULT_STORY_IMAGE,
+    offer_thumbnail:str = './rsc/img/fake_offer_thumbnail_640x640.png',
     offer_name:str = 'Awesome product',
     offer_price_from:str = '0000.00',
     offer_price_to:str = '0000.00',
@@ -91,7 +92,7 @@ def add_text_to_image(
     y:int = 0,
     text:str = '',
     text_align:str = 'left',
-    font:str = './resources/fonts/OpenSans-VariableFont_wdth,wght.ttf',
+    font:str = DEFAULT_PATH_TO_FONTS_FOLDER,
     font_size:int = 12,
 ) -> PngImageFile:
     """
