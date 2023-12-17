@@ -1,11 +1,11 @@
 # Imports
+import config as cfg
 from utils import dataframe_from_parquet, get_available_devices, connect_to_device, post_ig_story
 
 
 # Global variables
-DF_SRC = './tmp/parquet/df_offers_ig_ready.parquet'
-OFFER_IMG_SRC = './rsc/img/tmpl_story_720x1280_final.png'
-LINK_STICKER_TEXT = 'ver oferta'
+DF_SRC = f'{cfg.DEFAULT_PATH_FOR_TMP_PARQUET_FOLDER}df_offers_ig_ready.parquet'
+LINK_STICKER_TEXT = cfg.DEFAULT_LINK_STICKER_TXT
 
 
 # Main Function
