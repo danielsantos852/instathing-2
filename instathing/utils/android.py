@@ -10,10 +10,10 @@ from .execution import time_sleep
 
 
 # Global Variables (Configurations)
-PATH_TMP_STORY_IMG_ANDROID = '/storage/emulated/0/DCIM/temp/offer.png'
-LINK_STICKER_TEXT = 'ver oferta'
-DEFAULT_SCREEN_WIDTH = 1080
-DEFAULT_SCREEN_HEIGHT = 2400
+PATH_TO_ANDROID_TMP_FOLDER = '/storage/emulated/0/DCIM/temp/offer.png'
+DEFAULT_LINK_STICKER_TEXT = 'ver oferta'
+DEFAULT_DEVICE_SCREEN_WIDTH = 1080
+DEFAULT_DEVICE_SCREEN_LENGTH = 2400
 
 
 # Post IG Story function
@@ -21,7 +21,7 @@ def post_ig_story(
     device:AdbDevice = None,
     img_src:str = None,
     stckr_url:str = 'google.com',
-    stckr_text:str = LINK_STICKER_TEXT,
+    stckr_text:str = DEFAULT_LINK_STICKER_TEXT,
     close_friends:bool = True,
     restart_ig_app:bool = True,
 ) -> None:
@@ -41,7 +41,7 @@ def post_ig_story(
     """
     # Copy post image from computer to android device
     copy_file_to_device(src=img_src,
-                        dest=PATH_TMP_STORY_IMG_ANDROID,
+                        dest=PATH_TO_ANDROID_TMP_FOLDER,
                         device=device)
 
     # (Re)Start IG app
@@ -261,7 +261,7 @@ def post_ig_story(
         )
 
     # Remove offer image from device's internal storage
-    device.shell(f'rm {PATH_TMP_STORY_IMG_ANDROID}')
+    device.shell(f'rm {PATH_TO_ANDROID_TMP_FOLDER}')
 
     # Return nothing
     return None
@@ -364,8 +364,8 @@ def input_touchscreen_tap_randomized(
     x1:float = 0.5,
     y0:float = 0.5,
     y1:float = 0.5,
-    xmax:int = DEFAULT_SCREEN_WIDTH,
-    ymax:int = DEFAULT_SCREEN_HEIGHT,
+    xmax:int = DEFAULT_DEVICE_SCREEN_WIDTH,
+    ymax:int = DEFAULT_DEVICE_SCREEN_LENGTH,
     double_tap:bool = False,
     double_tap_delay:float= 0.1
 ) -> None:
@@ -455,8 +455,8 @@ def input_touchscreen_swipe_randomized(
     y1:float = 0.5,
     dx:int = 0,
     dy:int = 0,
-    xmax:int = DEFAULT_SCREEN_WIDTH,
-    ymax:int = DEFAULT_SCREEN_HEIGHT,
+    xmax:int = DEFAULT_DEVICE_SCREEN_WIDTH,
+    ymax:int = DEFAULT_DEVICE_SCREEN_LENGTH,
     duration:int = 1000
 ) -> None:
     """

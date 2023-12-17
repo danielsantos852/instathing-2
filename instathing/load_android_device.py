@@ -3,8 +3,8 @@ from utils import dataframe_from_parquet, get_available_devices, connect_to_devi
 
 
 # Global variables
-DF_SRC = './temp/parquet/df_offers_ig_ready.parquet'
-OFFER_IMG_SRC = './resources/story_template_720x1280_final.png'
+DF_SRC = './tmp/parquet/df_offers_ig_ready.parquet'
+OFFER_IMG_SRC = './rsc/img/tmpl_story_720x1280_final.png'
 LINK_STICKER_TEXT = 'ver oferta'
 
 
