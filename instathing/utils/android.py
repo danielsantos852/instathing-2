@@ -220,13 +220,13 @@ def post_ig_story(
         device=device,
         x0=0.601851852,    # 650px/1080px
         x1=0.680555555,    # 735px/1080px
-        dx=0,
         y0=0.420833334,    # 1010px/2400px
         y1=0.458333333,    # 1100px/2400px
+        dx=0,
         dy=1060,
         xmax=x_max,
         ymax=y_max,
-        delay=1500
+        duration=1500
     )
 
     # Wait
