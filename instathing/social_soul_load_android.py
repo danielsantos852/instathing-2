@@ -23,7 +23,7 @@ def main():
         # Post offer as IG Story
         post_ig_story(
             device=device,
-            img_src=df_offers.loc[i, 'storiesImage'],
+            img_src=df_offers.loc[i, 'igStoryImage'],
             stckr_url=df_offers.loc[i, 'offerLink'],
             stckr_text=LINK_STICKER_TEXT,
             close_friends=True,
@@ -31,8 +31,5 @@ def main():
         )
 
 
-# If this is the script being run
-if __name__=='__main__':
-
-    # Call Main Function
-    main()
+# If this is the script being run, call main()
+if __name__=='__main__': main()
