@@ -299,7 +299,7 @@ def connect_to_device(
     Connects to an available Android device.
 
     Parameters:
-        device_serial (str): device's serial number
+        device_serial (str): an adb device's serial number
         client (AdbClient): a ppadb client object
 
     Returns

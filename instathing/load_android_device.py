@@ -1,10 +1,10 @@
 # Imports
 import config as cfg
-from utils import dataframe_from_parquet, get_available_devices, connect_to_device, post_ig_story
+from utils import df_from_parquet, get_available_devices, connect_to_device, post_ig_story
 
 
 # Global variables
-DF_SRC = f'{cfg.DEFAULT_PATH_FOR_TMP_PARQUET_FOLDER}df_offers_ig_ready.parquet'
+DF_SRC = f'{cfg.DEFAULT_PATH_TO_TMP_PARQUET_FOLDER}{cfg.IG_READY_DF_FILE_NAME}.parquet'
 LINK_STICKER_TEXT = cfg.DEFAULT_LINK_STICKER_TXT
 
 
@@ -12,7 +12,7 @@ LINK_STICKER_TEXT = cfg.DEFAULT_LINK_STICKER_TXT
 def main():
     
     # Load offers dataframe
-    df_offers = dataframe_from_parquet(path=DF_SRC)
+    df_offers = df_from_parquet(path=DF_SRC)
 
     # Connect to first available android device
     device = connect_to_device(get_available_devices()[0].serial)

@@ -2,12 +2,14 @@
 import numpy as np
 from pandas.core.frame import DataFrame
 
+import config as cfg
 from .image_manipulation import create_ig_story_image_from_offer
 
 
 # Global Variables
-DEFAULT_PATH_TO_STORY_TEMPLATE = './rsc/img/tmpl_story_720x1280_final.png'
-DEFAULT_STORY_IMAGES_OUTPUT_FOLDER = './tmp/img/'
+COLUMNS_OF_INTEREST = cfg.COLUMNS_OF_INTEREST_LIST
+PATH_TO_IMG_OUTPUT_FOLDER = cfg.DEFAULT_PATH_TO_TMP_IMAGE_FOLDER
+PATH_TO_IG_STORY_TEMPLATE_IMG = cfg.DEFAULT_PATH_TO_STORY_TEMPLATE
 
 
 # Refine Dataframe function
@@ -21,21 +23,8 @@ def dataframe_refine(df:DataFrame) -> DataFrame:
     Returns:
         df (DataFrame): a pandas dataframe
     """
-    # Select columns of interest and clip dataframe
-    # (Uncomment/comment to keep/remove a column)
-    df = df.loc[:,[
-        'offerName',            # Offer description
-        #'sellerId',
-        #'sellerThumbnail',
-        'offerLink',            # URL to offer
-        'offerThumbnail',       # Photo of product in white background (most of the time)
-        'priceFrom',            # Price without discount (price before)
-        #'sellerName',
-        'priceTo',              # Price with discount (price after)
-        #'sku',
-        #'categoryName',
-        #'categoryId',
-    ]]
+    # Clip dataframe using columns of interest (configurable in config.py)
+    df = df.loc[:, COLUMNS_OF_INTEREST]
 
     # Cast prices from str to float64
     df['priceFrom'] = df['priceFrom'].astype('float64')
@@ -48,13 +37,15 @@ def dataframe_refine(df:DataFrame) -> DataFrame:
     return df
 
 
-# Dataframe Generate IG Stories function
-def dataframe_generate_ig_story_images(
+# Generate IG Story Images from Dataframe function
+def gen_ig_story_imgs_from_df(
     df:DataFrame = None,
-    output_folder = DEFAULT_STORY_IMAGES_OUTPUT_FOLDER
+    output_folder = PATH_TO_IMG_OUTPUT_FOLDER
 ) -> DataFrame:
     """ 
-    Generates IG story images, appends column of image paths to dataframe, removes columns no longer needed.
+    Generates offer images for IG story posting using data from input df, 
+    saves images in output_folder. Appends column of image paths to input df, 
+    also removes columns no longer needed.
     
     Parameters:
         df (DataFrame): a pandas dataframe containing offer data
@@ -63,17 +54,16 @@ def dataframe_generate_ig_story_images(
     Returns:
         df (DataFrame): same pandas dataframe with less columns but a new one
     """
-
     # Create empty list of IG Stories images
-    ig_stories_images = []
+    ig_story_images = []
     
     # For each offer in offers dataframe:
     for i in range(len(df)):
         
         # Generate IG Stories image
-        ig_stories_images.append(
+        ig_story_images.append(
             create_ig_story_image_from_offer(
-                base_image=DEFAULT_PATH_TO_STORY_TEMPLATE,
+                base_image=PATH_TO_IG_STORY_TEMPLATE_IMG,
                 offer_thumbnail= df.loc[i, 'offerThumbnail'],
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],
@@ -83,7 +73,7 @@ def dataframe_generate_ig_story_images(
         )
     
     # Add IG Stories images list as column in dataframe
-    df['storiesImage'] = ig_stories_images
+    df['igStoryImage'] = ig_story_images
     
     # Drop columns no longer needed
     df.drop(
