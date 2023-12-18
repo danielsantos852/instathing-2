@@ -568,7 +568,7 @@ def copy_file_to_device(
     return None
 
 
-# Launch IG App Android function
+# Launch IG App function
 def launch_ig_app(
     device:AdbDevice = None,
     force_stop:bool = False,
@@ -589,6 +589,32 @@ def launch_ig_app(
 
     # Start IG app
     device.shell('monkey -p com.instagram.android 1')
+
+    # Return nothing
+    return None
+
+
+# Take Screenshot function    
+def take_screenshot(
+    device:AdbDevice = None,
+    output_file:str = None
+) -> None:
+    """
+    Takes a screenshot of an Android device's screen using ppadb and save it.
+
+    Parameters:
+        device (AdbDevice): a ppadb Device object;
+        output_file (str): path to the output image file.
+
+    Returns:
+        None
+    """
+    # Take screenshot
+    print = device.screencap()
+
+    # Save screenshot to computer
+    with open(output_file, 'wb') as file:
+        file.write(print)
 
     # Return nothing
     return None
