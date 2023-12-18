@@ -1,6 +1,9 @@
 # Imports
 import config as cfg
-from utils import df_from_xml, refine_df, gen_ig_story_imgs_for_df, df_to_parquet
+from utils import (df_from_xml, 
+                   refine_df, 
+                   gen_ig_story_imgs_for_df, 
+                   df_to_parquet)
 
 
 # Global Variables
