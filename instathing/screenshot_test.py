@@ -17,5 +17,4 @@ def main():
 
 
 # If this is the script being run, call main()
-if __name__=='__main__':
-    main()
+if __name__=='__main__': main()
