@@ -10,9 +10,9 @@
 # Ignore contents of "secrets" folder
 /secrets/*
 
-# Ignore contents of "temp" folder
-/temp/*
-!/temp/.gitkeep
-!/temp/ig_stories_images/.gitkeep
-!/temp/parquet/.gitkeep
-!/temp/xml/.gitkeep
+# Ignore contents of "tmp" folder
+/tmp/*
+!/tmp/.gitkeep
+!/tmp/ig_stories_images/.gitkeep
+!/tmp/parquet/.gitkeep
+!/tmp/xml/.gitkeep
