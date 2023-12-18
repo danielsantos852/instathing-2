@@ -1,7 +1,7 @@
 # External imports
 from pandas.core.frame import DataFrame
-import pyarrow as pa
-import pyarrow.parquet as pq
+from pyarrow import Table
+from pyarrow.parquet import ParquetWriter
 
 
 # DataFrame to Parquet function
@@ -22,13 +22,13 @@ def df_to_parquet(
         None
     """
     # Create pyarrow Table obj from input df
-    table = pa.Table.from_pandas(input_df)
+    table = Table.from_pandas(input_df)
     
     # Mount path to output file
     output_file_path = f'{output_folder}{output_file_name}.parquet'
 
     # Get a ParquetWriter obj to output file
-    pqwriter = pq.ParquetWriter(where=f'{output_file_path}', schema=table.schema)
+    pqwriter = ParquetWriter(where=f'{output_file_path}', schema=table.schema)
     
     # Add table to parquet file
     pqwriter.write_table(table=table)
