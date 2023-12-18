@@ -41,8 +41,7 @@ DEFAULT_PATH_TO_TMP_IMAGE_FOLDER = './tmp/img/'
 DEFAULT_PATH_TO_TMP_PARQUET_FOLDER = './tmp/parquet/'
 
 # After transform, export offers dataframe as a parquet file with this name:
-IG_READY_DF_FILE_NAME = 'offers_df_ig_ready'
-
+DEFAULT_IG_READY_PARQUET_FILE_NAME = 'offers_ig_ready'
 
 # ----------------------------------------------------------------------------
 #                           --- LOAD SETTINGS ---

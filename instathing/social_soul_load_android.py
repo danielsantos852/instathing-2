@@ -4,7 +4,7 @@ from utils import df_from_parquet, get_available_devices, connect_to_device, pos
 
 
 # Global variables
-DF_SRC = f'{cfg.DEFAULT_PATH_TO_TMP_PARQUET_FOLDER}{cfg.IG_READY_DF_FILE_NAME}.parquet'
+DF_SRC = f'{cfg.DEFAULT_PATH_TO_TMP_PARQUET_FOLDER}{cfg.DEFAULT_IG_READY_PARQUET_FILE_NAME}.parquet'
 LINK_STICKER_TEXT = cfg.DEFAULT_LINK_STICKER_TXT
 
 

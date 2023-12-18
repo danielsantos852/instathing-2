@@ -6,7 +6,7 @@ from utils import df_from_xml, refine_df, gen_ig_story_imgs_for_df, df_to_parque
 # Global Variables
 PATH_TO_INPUT_XML_FILE = cfg.PATH_TO_EXAMPLE_SOCIAL_SOUL_INPUT_XML_FILE
 PATH_TO_OUTPUT_FOLDER = cfg.DEFAULT_PATH_TO_TMP_PARQUET_FOLDER
-OUTPUT_PARQUET_FILE_NAME = cfg.IG_READY_DF_FILE_NAME
+OUTPUT_PARQUET_FILE_NAME = cfg.DEFAULT_IG_READY_PARQUET_FILE_NAME
 
 
 # Main Function
