@@ -12,7 +12,8 @@
 
 # Ignore contents of "tmp" folder
 /tmp/*
-!/tmp/.gitkeep
-!/tmp/ig_stories_images/.gitkeep
+!/tmp/img/.gitkeep
 !/tmp/parquet/.gitkeep
+!/tmp/ss/.gitkeep
 !/tmp/xml/.gitkeep
+!/tmp/.gitkeep
