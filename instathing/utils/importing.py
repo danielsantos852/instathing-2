@@ -1,8 +1,9 @@
 # Imports
+from json import loads as json_loads
+from xml.etree import ElementTree
+
+from pandas import read_parquet
 from pandas.core.frame import DataFrame
-import pandas as pd
-import json
-import xml.etree.ElementTree as ET
 
 
 # DataFrame from XML function
@@ -22,7 +23,7 @@ def df_from_xml(
     # https://saturncloud.io/blog/converting-xml-to-python-dataframe-a-comprehensive-guide/
     
     # Parse the XML file
-    tree = ET.parse(input_xml)
+    tree = ElementTree.parse(input_xml)
     root = tree.getroot()
     
     # Extract data
@@ -52,7 +53,7 @@ def df_from_parquet(input_parquet:str = None) -> DataFrame:
         df (DataFrame): a pandas dataframe object.
     """
     # Load dataframe from parquet file
-    df = pd.read_parquet(path=input_parquet)
+    df = read_parquet(path=input_parquet)
     
     # Return loaded dataframe
     return df
@@ -78,7 +79,7 @@ def dict_from_json(input_json:str) -> dict:
         with open(input_json, 'r') as file:
             
             # Return file contents as a dict obj
-            return json.loads(file.read())
+            return json_loads(file.read())
     
     # If file not found:
     except FileNotFoundError:
