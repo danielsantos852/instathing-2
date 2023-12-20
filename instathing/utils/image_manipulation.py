@@ -6,7 +6,7 @@ import config as cfg
 
 
 # Global Variables
-PATH_TO_FONT = cfg.PATH_TO_DEFAULT_FONT_FILE
+FONT_FILE_PATH = cfg.DEFAULT_FONT_FILE_PATH
 
 
 # Add Text To Image function
@@ -16,7 +16,7 @@ def add_text_to_image(
     y:int = 0,
     text:str = '',
     text_align:str = 'left',
-    font:str = PATH_TO_FONT,
+    font:str = FONT_FILE_PATH,
     font_size:int = 12,
 ) -> PngImageFile:
     """

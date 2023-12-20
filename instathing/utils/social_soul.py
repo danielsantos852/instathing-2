@@ -12,8 +12,8 @@ from .image_manipulation import add_text_to_image
 
 # Global Variables
 COLUMNS_OF_INTEREST = cfg.COLUMNS_OF_INTEREST_LIST
-PATH_TO_IMG_OUTPUT_FOLDER = cfg.DEFAULT_PATH_TO_TMP_IMAGE_FOLDER
-PATH_TO_IG_STORY_TEMPLATE = cfg.PATH_TO_DEFAULT_STORY_TEMPLATE_IMG
+PATH_TO_IMG_OUTPUT_FOLDER = cfg.PATH_TO_TMP_IMAGE_FOLDER
+STORY_TEMPLATE_IMAGE_FILE_PATH = cfg.DEFAULT_STORY_TEMPLATE_IMG_FILE_PATH
 
 
 # Refine Dataframe function
@@ -68,7 +68,7 @@ def gen_ig_story_imgs_for_df(
         ig_story_images.append(
             gen_offer_ig_story_img(
                 output_file= f'{output_folder}offer{str(i).zfill(3)}.png', # e.g.: "offer001.png",
-                base_image=PATH_TO_IG_STORY_TEMPLATE,
+                base_image=STORY_TEMPLATE_IMAGE_FILE_PATH,
                 offer_thumbnail= df.loc[i, 'offerThumbnail'],
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],
