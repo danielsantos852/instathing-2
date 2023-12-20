@@ -596,9 +596,9 @@ def launch_ig_app(
 
 # Take Screenshot function    
 def take_screenshot(
-    device:AdbDevice = None,
-    output_file:str = None
-) -> None:
+    device:AdbDevice|None = None,
+    output_file:str|None = None
+) -> str:
     """
     Takes a screenshot of an Android device's screen using ppadb and save it.
 
@@ -607,7 +607,7 @@ def take_screenshot(
         output_file (str): path to the output image file.
 
     Returns:
-        None
+        output_file (str): same as input.
     """
     # Take screenshot
     print = device.screencap()
@@ -616,5 +616,5 @@ def take_screenshot(
     with open(output_file, 'wb') as file:
         file.write(print)
 
-    # Return nothing
-    return None
+    # Return path to output image file
+    return output_file
