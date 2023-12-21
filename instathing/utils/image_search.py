@@ -5,19 +5,19 @@ from pyscreeze import Box
 
 # Find Image in Image function
 def find_img_in_img(
-    needle_img = None,
-    haystack_img = None,
-    sureness:float = 1.00,    # 1.0=100%
-) -> Box | None:
+    needle_img: str|None = None,
+    haystack_img: str|None = None,
+    sureness: float = 0.9,
+) -> Box|None:
     """
     Finds a smaller, "needle" image inside a bigger, "haystack" image.
     Returns coordinates and size of needle image occurrence in haystack image;
     or None, if no match.
     
     Parameters:
-        needle_img (str): image to look for;
+        needle_img (str): image to search for;
         haystack_img (str): image where to look for;
-        sureness (float): match sureness percentage (1.0 = "100% sure").
+        sureness (float): match sureness percentage (1.0 means "100% sure").
 
     Returns
         box (Box): a pyscreeze Box object; or
@@ -41,6 +41,9 @@ def find_img_in_img(
 
         # Return None
         return None
+
+    # Print "image found" message
+    print(f'Needle image found at {box}')
 
     # Return image box
     return box
