@@ -5,6 +5,8 @@ import time
 
 from ppadb.client import Client as AdbClient
 from ppadb.device import Device as AdbDevice
+from pyscreeze import Box, Point
+from pyscreeze import center
 
 from .execution import time_sleep
 
@@ -418,24 +420,28 @@ def input_touchscreen_tap_randomized(
 
 # Input Touchscreen Tap function
 def input_touchscreen_tap(
-    device: AdbDevice,
-    x:int = 0,
-    y:int = 0,
+    device:AdbDevice|None,
+    box:Box|None = None,
 ) -> None:
     """
     Performs a touchscreen tap on an Android device using ADB shell.
 
     Parameters:
-        device (AdbDevice): a ppadb device object
-        x (int): tap's x coordinate value (in pixels)
-        y (int): tap's y coordinate value (in pixels)
-    
+        device (AdbDevice): a ppadb Device object;
+        box (Box): a pyscreeze Box object.
+        
     Returns:
         None
 
     Additional information:
         (x,y)=(0,0) is the top-left-most pixel of the screen.
     """
+
+    # Get box's center coordinates
+    point = center(box)
+    x = point.x
+    y = point.y
+
     # Input touchscreen tap on (x,y) using adb shell
     device.shell(f'input touchscreen tap {x} {y}')
 
