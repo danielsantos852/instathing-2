@@ -1,3 +1,6 @@
+# Imports
+from pyscreeze import Box
+
 # ============================================================================
 #                           === CONFIGURATION FILE ===
 # ============================================================================
@@ -53,7 +56,8 @@ PATH_TO_TMP_IMAGE_FOLDER_ANDROID = '/storage/emulated/0/DCIM/temp/'
 DEFAULT_TMP_STORY_IMG_FILE_NAME_ANDROID = 'offer.png'
 
 # Visual elements for IG bot navigation are located in this folder:
-PATH_TO_VISUAL_ELEMENTS_FOLDER = './rsc/ve/'
+PATH_TO_VE_DIR = './rsc/ve/'
+PATH_TO_TMP_SS_DIR = './tmp/ss/'
 
 # When adding a link sticker to IG story post, use this display text:
 DEFAULT_LINK_STICKER_TXT = 'ver oferta'
@@ -64,54 +68,96 @@ DEFAULT_LINK_STICKER_TXT = 'ver oferta'
 #               
 # ----------------------------------------------------------------------------
 # IG bot will use the following visual elements as clues to navigate IG app.
-
-# IG home screen
-LOGO_IG = 'e00a_logo_ig.png'            # IG logo
-BTN_NEW_STORY = 'e00b_btn_newstory.png' # Blue "new story" button
-BTN_NEW_POST = 'e00c_btn_newpost.png'   # "New post" button
-
-# "New post" screen
-TITLE_NEW_POST = 'e01a_title_newpost.png'
-SLIDER_MENU_POST_SELECTED = 'e01b_sldr_menu.png'
-TXT_POST_HIGHLIGHT = 'e01c_txt_post.png'
-TXT_STORY = 'e01c_txt_story.png'
-
+# 
+# IG logo in home screen
+LOGO_IG = f'{PATH_TO_VE_DIR}e00a_logo_ig.png'
+# 
+# Blue "new story" button in home screen
+BTN_NEW_STORY = f'{PATH_TO_VE_DIR}e00b_btn_newstory.png'
+# 
+# "New post" button in home screen
+BTN_NEW_POST = f'{PATH_TO_VE_DIR}e00c_btn_newpost.png'
+# 
+# "New Post" title
+TITLE_NEW_POST = f'{PATH_TO_VE_DIR}e01a_title_newpost.png'
+# 
+# Slider menu (when "POST" option selected)
+SLDR_MENU_POST_SEL = f'{PATH_TO_VE_DIR}e01b_sldr_menu.png'
+# 
+# (Highlighted) "POST" word in slider menu
+TXT_POST_HIGHLIGHT = f'{PATH_TO_VE_DIR}e01c_txt_post.png'
+# 
+# "STORY" word in slider menu
+TXT_STORY = f'{PATH_TO_VE_DIR}e01c_txt_story.png'
+# 
 # "New story" screen
-BTN_TAKE_PICTURE = 'e02a_btn_takepic.png'
-SLIDER_MENU_STORY_SELECTED = 'e02b_sldr_menu.png'
-TXT_POST = 'e02c_txt_post.png'
-TXT_STORY_HIGHLIGHT = 'e02d_txt_story.png'
-
-# Story gallery screen
-BAR_STORY_GALLERY = 'e03a_bar_storygallery.png'
-TITLE_ADD_TO_STORY = 'e03b_title_addtostory.png'
-BTN_ADD_STICKER = 'e04a_btn_addsticker.png'
-
-# "Add sticker" screen
-FIELD_SEARCH_STICKER = 'e05a_field_search.png'
-
-# "Add sticker" screen (after clicking on searchfield)
-CONTEXT_SEARCH = 'e06a_context_search.png'
-TXT_SEARCH = 'e06b_txt_search.png'
-
-# "Add sticker" screen (after searching for "link")
-STICKER_LINK = 'e07a_stckr_link.png'
-
-# "Add link" screen
-TITLE_ADD_LINK = 'e08a_title_addlink.png'
-CONTEXT_URL = 'e08b_context_url.png'
-FIELD_URL = 'e08c_field_url.png'
-BTN_CUSTOMIZE_STICKER_TEXT = 'e08d_btn_customizestickertext.png'
-
-# "Add link" screen (after pressing "customize sticker text")
-FIELD_STICKER_TEXT = 'e09a_field_stickertext.png'
-BTN_DONE = 'e09b_btn_done.png'
-
-# "Story build" screen (after adding link sticker)
-ICO_LINK_STICKER_BLUE = 'e10a_ico_linksticker.png'
-ICO_LINK_STICKER_WHITE = 'e11a_ico_linksticker.png'
-ICO_LINK_STICKER_BLACK = 'e12a_ico_linksticker.png'
-ICO_LINK_STICKER_ORANGE = 'e13a_ico_linksticker.png'
-CONTEXT_AUDIENCE_OPTIONS = 'e14a_context_audienceoptions.png'
-BTN_YOUR_STORY = 'e14b_btn_yourstory.png'
-BTN_CLOSE_FRIENDS = 'e14c_btn_closefriends.png'
+BTN_TAKE_PICTURE = f'{PATH_TO_VE_DIR}e02a_btn_takepic.png'
+# 
+# Slider menu (when "STORY" option selected)
+SLDR_MENU_STORY_SEL = f'{PATH_TO_VE_DIR}e02b_sldr_menu.png'
+# 
+# "POST" word in slider menu
+TXT_POST = f'{PATH_TO_VE_DIR}e02c_txt_post.png'
+# 
+# (Highlighted) "STORY" word in slider menu
+TXT_STORY_HIGHLIGHT = f'{PATH_TO_VE_DIR}e02d_txt_story.png'
+# 
+# IG story gallery top bar
+BAR_STORY_GALLERY = f'{PATH_TO_VE_DIR}e03a_bar_storygallery.png'
+# 
+# "Add to story" header in IG story gallery
+HDR_ADD_TO_STORY = f'{PATH_TO_VE_DIR}e03b_title_addtostory.png'
+#
+# Region of first image in IG story gallery
+BOX_1ST_IMG_IN_STRY_GAL = Box(left=3, top=668, width=353, height=627)
+# 
+# "Add sticker" button
+BTN_ADD_STICKER = f'{PATH_TO_VE_DIR}e04a_btn_addsticker.png'
+# 
+# Search field in "Add Sticker" context
+FLD_SEARCH_STICKER = f'{PATH_TO_VE_DIR}e05a_field_search.png'
+# 
+# Search field in "Add sticker" context
+CONTEXT_SEARCH = f'{PATH_TO_VE_DIR}e06a_context_search.png'
+# 
+# "Search" word in "Add sticker" context
+TXT_SEARCH = f'{PATH_TO_VE_DIR}e06b_txt_search.png'
+# 
+# Sticker link in "Add sticker" context
+STCKR_LINK = f'{PATH_TO_VE_DIR}e07a_stckr_link.png'
+# 
+# "Add link" title in "Add link sticker" context
+TITLE_ADD_LINK = f'{PATH_TO_VE_DIR}e08a_title_addlink.png'
+# 
+# "URL" field in in "Add link sticker" context
+CONTXT_URL = f'{PATH_TO_VE_DIR}e08b_context_url.png'
+# 
+# URL field's URL in "Add link sticker" context
+FLD_URL = f'{PATH_TO_VE_DIR}e08c_field_url.png'
+# 
+# "Customize sticker text" button in "Add link sticker" context
+BTN_CUSTOM_STCKR_TXT = f'{PATH_TO_VE_DIR}e08d_btn_customstckrtxt.png'
+# 
+# "Customize sticker text" text in "Add link sticker" context
+TXT_CUSTOM_STCKR_TXT = f'{PATH_TO_VE_DIR}e08e_txt_customstckrtxt.png'
+# 
+# "Sticker text" field in "Add link sticker" context
+FIELD_STICKER_TEXT = f'{PATH_TO_VE_DIR}e09a_field_stickertext.png'
+# 
+# "Done" button in "Add link sticker" context
+BTN_DONE = f'{PATH_TO_VE_DIR}e09b_btn_done.png'
+# 
+# Link sticker's icon in story build screen (multiple colors)
+ICO_LINK_STICKER_BLUE = f'{PATH_TO_VE_DIR}e10a_ico_linksticker.png'
+ICO_LINK_STICKER_WHITE = f'{PATH_TO_VE_DIR}e11a_ico_linksticker.png'
+ICO_LINK_STICKER_BLACK = f'{PATH_TO_VE_DIR}e12a_ico_linksticker.png'
+ICO_LINK_STICKER_ORANGE = f'{PATH_TO_VE_DIR}e13a_ico_linksticker.png'
+# 
+# IG story audience options context in story build screen
+CONTEXT_AUDIENCE_OPTIONS = f'{PATH_TO_VE_DIR}e14a_context_audienceoptions.png'
+# 
+# "Your story" button in story build screen
+BTN_YOUR_STORY = f'{PATH_TO_VE_DIR}e14b_btn_yourstory.png'
+# 
+# "Close Friends" button in story build screen
+BTN_CLOSE_FRIENDS = f'{PATH_TO_VE_DIR}e14c_btn_closefriends.png'
