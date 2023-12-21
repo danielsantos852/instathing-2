@@ -6,32 +6,31 @@ import time
 
 # Time Sleep function
 def time_sleep(
-    t_base:float = 0.0,
+    t:float = 0.0,
     max_var:float = 0.0
-) -> None:
+) -> float:
     """
-    Add a delay of t_base plus up to 100% of t_base to program execution.
+    Adds a randomized delay to program execution.
 
     Parameters:
-        t_base (float): base delay time (in seconds); 
-        
-        max_var (float): maximum variation as a fraction of t_base.
-            e.g.: max_var=0.5 means "a maximum variation of 50% of t_base"
+        t (float): base delay time (in seconds); 
+        max_var (float): maximum variation as a fraction of t.
+            max_var=1.0 means "100% of t"
 
     Returns:
-        None
+        t_delay (float): final delay time
     """
     # Get random variation within [0, max_var]
     var = round(random.uniform(0, max_var), 4)
     
-    # Calculate t
-    t = t_base + var * t_base
+    # Calculate delay time
+    t_delay = t + var*t
 
-    # Sleep for t seconds
-    time.sleep(t)
+    # Sleep for t_delay seconds
+    time.sleep(t_delay)
 
     # Debug
-    print(f'Waited for {t:.6f} seconds.')
+    print(f'Waited for {t_delay:.4f} seconds.')
 
-    # Return None
-    return None
+    # Return t_delay
+    return t_delay
