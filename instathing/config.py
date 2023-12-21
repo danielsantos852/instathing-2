@@ -47,9 +47,71 @@ DEFAULT_LOAD_READY_PARQUET_FILE_NAME = 'offers_ig_ready'
 #                           --- LOAD SETTINGS ---
 #               Options for the load (post) part of the pipeline.
 # ----------------------------------------------------------------------------
-# Before making an IG story post, offer image will be temporarily stored in 
-# device in this file path:
-DEFAULT_TMP_OFFER_IMG_FILEPATH_ANDROID = '/storage/emulated/0/DCIM/temp/offer.png'
+# Before being used in IG story post, offer image will be temporarily stored 
+# in Android device using this folder path and name:
+PATH_TO_TMP_IMAGE_FOLDER_ANDROID = '/storage/emulated/0/DCIM/temp/'
+DEFAULT_TMP_STORY_IMG_FILE_NAME_ANDROID = 'offer.png'
+
+# Visual elements for IG bot navigation are located in this folder:
+PATH_TO_VISUAL_ELEMENTS_FOLDER = './rsc/ve/'
 
 # When adding a link sticker to IG story post, use this display text:
 DEFAULT_LINK_STICKER_TXT = 'ver oferta'
+
+
+# ----------------------------------------------------------------------------
+#                           --- CONSTANTS ---
+#               
+# ----------------------------------------------------------------------------
+# IG bot will use the following visual elements as clues to navigate IG app.
+
+# IG home screen
+LOGO_IG = 'e00a_logo_ig.png'            # IG logo
+BTN_NEW_STORY = 'e00b_btn_newstory.png' # Blue "new story" button
+BTN_NEW_POST = 'e00c_btn_newpost.png'   # "New post" button
+
+# "New post" screen
+TITLE_NEW_POST = 'e01a_title_newpost.png'
+SLIDER_MENU_POST_SELECTED = 'e01b_sldr_menu.png'
+TXT_POST_HIGHLIGHT = 'e01c_txt_post.png'
+TXT_STORY = 'e01c_txt_story.png'
+
+# "New story" screen
+BTN_TAKE_PICTURE = 'e02a_btn_takepic.png'
+SLIDER_MENU_STORY_SELECTED = 'e02b_sldr_menu.png'
+TXT_POST = 'e02c_txt_post.png'
+TXT_STORY_HIGHLIGHT = 'e02d_txt_story.png'
+
+# Story gallery screen
+BAR_STORY_GALLERY = 'e03a_bar_storygallery.png'
+TITLE_ADD_TO_STORY = 'e03b_title_addtostory.png'
+BTN_ADD_STICKER = 'e04a_btn_addsticker.png'
+
+# "Add sticker" screen
+FIELD_SEARCH_STICKER = 'e05a_field_search.png'
+
+# "Add sticker" screen (after clicking on searchfield)
+CONTEXT_SEARCH = 'e06a_context_search.png'
+TXT_SEARCH = 'e06b_txt_search.png'
+
+# "Add sticker" screen (after searching for "link")
+STICKER_LINK = 'e07a_stckr_link.png'
+
+# "Add link" screen
+TITLE_ADD_LINK = 'e08a_title_addlink.png'
+CONTEXT_URL = 'e08b_context_url.png'
+FIELD_URL = 'e08c_field_url.png'
+BTN_CUSTOMIZE_STICKER_TEXT = 'e08d_btn_customizestickertext.png'
+
+# "Add link" screen (after pressing "customize sticker text")
+FIELD_STICKER_TEXT = 'e09a_field_stickertext.png'
+BTN_DONE = 'e09b_btn_done.png'
+
+# "Story build" screen (after adding link sticker)
+ICO_LINK_STICKER_BLUE = 'e10a_ico_linksticker.png'
+ICO_LINK_STICKER_WHITE = 'e11a_ico_linksticker.png'
+ICO_LINK_STICKER_BLACK = 'e12a_ico_linksticker.png'
+ICO_LINK_STICKER_ORANGE = 'e13a_ico_linksticker.png'
+CONTEXT_AUDIENCE_OPTIONS = 'e14a_context_audienceoptions.png'
+BTN_YOUR_STORY = 'e14b_btn_yourstory.png'
+BTN_CLOSE_FRIENDS = 'e14c_btn_closefriends.png'
