@@ -10,10 +10,10 @@
 # Ignore contents of "secrets" folder
 /secrets/*
 
-# Ignore contents of "tmp" folder
-/tmp/*
-!/tmp/img/.gitkeep
-!/tmp/parquet/.gitkeep
-!/tmp/ss/.gitkeep
-!/tmp/xml/.gitkeep
-!/tmp/.gitkeep
+# Ignore contents of "temp" folder
+/temp/*
+!/temp/img/.gitkeep
+!/temp/parquet/.gitkeep
+!/temp/ss/.gitkeep
+!/temp/xml/.gitkeep
+!/temp/.gitkeep
