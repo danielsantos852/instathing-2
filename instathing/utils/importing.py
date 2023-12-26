@@ -8,7 +8,7 @@ from pandas.core.frame import DataFrame
 
 # DataFrame from XML function
 def df_from_xml(
-    input_xml:str = None
+    input_xml:str|None = None
 ) -> DataFrame:
     """
     Loads the contents of a XML file to memory as a pandas DataFrame.
@@ -42,7 +42,9 @@ def df_from_xml(
 
 
 # DataFrame from parquet function
-def df_from_parquet(input_parquet:str = None) -> DataFrame:
+def df_from_parquet(
+    input_parquet:str|None = None
+) -> DataFrame:
     """
     Loads the contents of a parquet file to memory as a pandas DataFrame.
 
@@ -60,17 +62,18 @@ def df_from_parquet(input_parquet:str = None) -> DataFrame:
 
 
 # Dict from JSON function
-def dict_from_json(input_json:str) -> dict:
+def dict_from_json(
+    input_json:str|None = None
+) -> dict|None:
     """
     Loads the contents of a json file to memory as a Python dict.
     
     Parameters
-        input_json (str): path to input json file.
+        - input_json (str): path to input json file.
 
     Returns:
-        (dict): a Python dict object; or
-        
-        None, if input file not found.
+        - (dict): a Python dict object; or
+        - None, if input file not found.
     """
     # Try to:
     try:

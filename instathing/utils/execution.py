@@ -13,12 +13,12 @@ def time_sleep(
     Adds a randomized delay to program execution.
 
     Parameters:
-        t (float): base delay time (in seconds); 
-        max_var (float): maximum variation as a fraction of t.
-            max_var=1.0 means "100% of t"
+    - t (float): base delay time (in seconds); 
+    - max_var (float): maximum variation as a fraction of t.
+        - max_var=1.0 means "100% of t".
 
     Returns:
-        t_delay (float): final delay time
+    - t_delay (float): calculated delay time.
     """
     # Get random variation within [0, max_var]
     var = round(random.uniform(0, max_var), 4)

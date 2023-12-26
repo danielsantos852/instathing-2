@@ -6,7 +6,7 @@ import config as cfg
 
 
 # Global Variables
-FONT_FILE_PATH = cfg.DEFAULT_FONT_FILE_PATH
+FONT_FILE_PATH = cfg.DEFAULT_FONT
 
 
 # Add Text To Image function
@@ -23,16 +23,16 @@ def add_text_to_image(
     Adds text to an image.
     
     Parameters:
-        im (PngImageFile): an image
-        x (int): x coordinate of textbox's top-left-most pixel (0 means left of image, grows rightwards)
-        y (int): y coordinate of textbox's top-left-most pixel (0 means top of image, grows downwards)
-        text (str): actual text to be written
-        text_align (str): text alignment
-        font (str): path to TTF font file
-        font_size (int): font size
+        im (PngImageFile): an image;
+        x (int): x coordinate of textbox's top-left-most pixel;
+        y (int): y coordinate of textbox's top-left-most pixel;
+        text (str): actual text to be written;
+        text_align (str): text alignment;
+        font (str): path to TTF font file;
+        font_size (int): font size.
 
     Returns:
-        im (PngImageFile): input image with added text
+        im (PngImageFile): input image with added text.
     """
     # Set font
     text_font = ImageFont.truetype(font=font,

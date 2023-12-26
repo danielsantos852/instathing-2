@@ -11,21 +11,23 @@ from .image_manipulation import add_text_to_image
 
 
 # Global Variables
-COLUMNS_OF_INTEREST = cfg.COLUMNS_OF_INTEREST_LIST
-PATH_TO_IMG_OUTPUT_FOLDER = cfg.PATH_TO_TMP_IMAGE_FOLDER
-STORY_TEMPLATE_IMAGE_FILE_PATH = cfg.DEFAULT_STORY_TEMPLATE_IMG_FILE_PATH
+COLUMNS_OF_INTEREST = cfg.COLUMNS_OF_INTEREST
+OUTPUT_IMAGE_FOLDER = cfg.DEFAULT_TEMP_IMG_FOLDER
+STORY_TEMPLATE_PATH = cfg.DEFAULT_STORY_TEMPLATE
 
 
 # Refine Dataframe function
-def refine_df(df:DataFrame) -> DataFrame:
+def refine_df(
+    df:DataFrame|None = None
+) -> DataFrame:
     """
     Refines a pandas dataframe with raw offer data from Social Soul.
 
     Parameters:
-        df (DataFrame): a pandas dataframe.
+    - df (DataFrame): a pandas dataframe.
 
     Returns:
-        df (DataFrame): same dataframe, refined.
+    - df (DataFrame): same dataframe, refined.
     """
     # Clip dataframe using columns of interest (configurable in config.py)
     df = df.loc[:, COLUMNS_OF_INTEREST]
@@ -43,8 +45,8 @@ def refine_df(df:DataFrame) -> DataFrame:
 
 # Generate IG Story Images for Dataframe function
 def gen_ig_story_imgs_for_df(
-    df:DataFrame = None,
-    output_folder = PATH_TO_IMG_OUTPUT_FOLDER
+    df:DataFrame|None = None,
+    output_folder:str = OUTPUT_IMAGE_FOLDER
 ) -> DataFrame:
     """ 
     Generates offer images for IG story posting using offer data from df, 
@@ -52,11 +54,11 @@ def gen_ig_story_imgs_for_df(
     removes no longer necessary columns from df.
     
     Parameters:
-        df (DataFrame): a pandas dataframe containing refined offer data;
-        output_folder (str): path to folder where images will be stored.
+    - df (DataFrame): a pandas dataframe containing refined offer data;
+    - output_folder (str): path to folder where images will be stored.
 
     Returns:
-        df (DataFrame): input dataframe with less columns but a new one.
+    - df (DataFrame): input dataframe with less columns but a new one.
     """
     # Create empty list of IG story images
     ig_story_images = []
@@ -68,7 +70,7 @@ def gen_ig_story_imgs_for_df(
         ig_story_images.append(
             gen_offer_ig_story_img(
                 output_file= f'{output_folder}offer{str(i).zfill(3)}.png', # e.g.: "offer001.png",
-                base_image=STORY_TEMPLATE_IMAGE_FILE_PATH,
+                base_image=STORY_TEMPLATE_PATH,
                 offer_thumbnail= df.loc[i, 'offerThumbnail'],
                 offer_name= df.loc[i, 'offerName'],
                 offer_price_from= df.loc[i, 'priceFrom'],
@@ -92,26 +94,26 @@ def gen_ig_story_imgs_for_df(
 
 # Generate Instagram Story Image from Offer function
 def gen_offer_ig_story_img(
-    output_file:str = './tmp/img/test.png',
-    base_image:str = './rsc/img/tmpl_story_720x1280_blue.png',
-    offer_thumbnail:str = './rsc/img/fake_offer_thumbnail_640x640.png',
-    offer_name:str = 'Awesome shoes!',
-    offer_price_from:str = '9999.99',
-    offer_price_to:str = '0000.00',
+    output_file:str|None = None,
+    base_image:str|None = None,
+    offer_thumbnail:str|None = None,
+    offer_name:str|None = None,
+    offer_price_from:str|None = None,
+    offer_price_to:str|None = None,
 ) -> str:
     """
     Generates a 720x1280 offer image fit for an IG Stories post.
-    
+
     Parameters:
-        output_file (str): path to output image file
-        base_image (str): path to 720x1280 template image
-        offer_thumbnail (str): url to product thumbnail
-        offer_name (str): product description
-        offer_price_from (str): product price before discount
-        offer_price_to (str): product price after discount
+    - output_file (str): path to output image file;
+    - base_image (str): path to 720x1280 template image;
+    - offer_thumbnail (str): url to product thumbnail;
+    - offer_name (str): product description;
+    - offer_price_from (str): product price before discount;
+    - offer_price_to (str): product price after discount.
 
     Returns:
-        output_file (str): same as input
+    - output_file (str): same as input.
     """
     # Create new IG story image from base image
     im_story = Image.open(fp=base_image)
