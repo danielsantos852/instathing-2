@@ -7,16 +7,16 @@ from utils import (df_from_xml,
 
 
 # Global Variables
-PATH_TO_INPUT_XML_FILE = cfg.PATH_TO_EXAMPLE_SOCIAL_SOUL_INPUT_XML_FILE
-PATH_TO_OUTPUT_FOLDER = cfg.DEFAULT_PATH_TO_TMP_PARQUET_FOLDER
-OUTPUT_PARQUET_FILE_NAME = cfg.DEFAULT_IG_READY_PARQUET_FILE_NAME
+INPUT_XML_PATH = cfg.SOCIAL_SOUL_EXAMPLE_XML_FILE
+OUTPUT_PARQUET_FOLDER = cfg.DEFAULT_TEMP_PARQUET_FOLDER
+OUTPUT_PARQUET_FILE_NAME = cfg.DEFAULT_LOAD_READY_PARQUET_FILE_NAME
 
 
 # Main Function
 def main():
 
     # Load XML file with offer data as a pandas dataframe
-    df_offers_raw = df_from_xml(input_xml=PATH_TO_INPUT_XML_FILE)
+    df_offers_raw = df_from_xml(input_xml=INPUT_XML_PATH)
 
     # Clean offer data in dataframe
     df_offers_refined = refine_df(df=df_offers_raw)
@@ -26,7 +26,7 @@ def main():
     
     # Export IG-ready dataframe to a parquet file
     df_to_parquet(input_df=df_offers_ig_ready,
-                  output_folder=PATH_TO_OUTPUT_FOLDER,
+                  output_folder=OUTPUT_PARQUET_FOLDER,
                   output_file_name=OUTPUT_PARQUET_FILE_NAME)
 
 
