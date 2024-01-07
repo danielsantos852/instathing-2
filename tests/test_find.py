@@ -1,5 +1,6 @@
 # Imports
-import config as cfg
+from context import config as cfg
+
 from utils import get_available_devices, connect_to_device, take_screenshot, find_img_in_img
 
 
