@@ -9,8 +9,8 @@ from pyscreeze import Box
 from pyscreeze import center
 
 import config as cfg
-from .execution import time_sleep
-from .image_search import find_on_device_screen
+from ..utils.execution import time_sleep
+from ..utils.image_search import find_on_device_screen
 
 
 # Global Variables (Configurations)
