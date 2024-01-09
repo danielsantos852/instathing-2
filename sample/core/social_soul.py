@@ -1,13 +1,15 @@
-# Imports
+# Python imports
 from textwrap import wrap
 
+# Third-party imports
 import numpy as np
 from pandas.core.frame import DataFrame
 from PIL import Image
 import requests
 
-import config as cfg
-from .image_manipulation import add_text_to_image
+# Internal imports
+from .context import config as cfg
+from .context import add_textbox_to_image
 
 
 # Global Variables
@@ -16,8 +18,8 @@ OUTPUT_IMAGE_FOLDER = cfg.DEFAULT_TEMP_IMG_FOLDER
 STORY_TEMPLATE_PATH = cfg.DEFAULT_STORY_TEMPLATE
 
 
-# Refine Dataframe function
-def refine_df(
+# Functions
+def refine_dataframe(
     df:DataFrame|None = None
 ) -> DataFrame:
     """
@@ -132,7 +134,7 @@ def gen_offer_ig_story_img(
             offer_name = f'{offer_name[:max_name_length-3]}...'
 
     # Add offer name to IG story image
-    im_story = add_text_to_image(
+    im_story = add_textbox_to_image(
         im=im_story,
         font_size=40,
         x=27.5, # (10+17.5)
@@ -150,7 +152,7 @@ def gen_offer_ig_story_img(
         price_text = f'De R${offer_price_from} por apenas R${offer_price_to}'
     
     # Add offer price text to IG story image
-    im_story = add_text_to_image(
+    im_story = add_textbox_to_image(
         im=im_story,
         font_size=37.5,
         x=27.5, # (10+17.5)
