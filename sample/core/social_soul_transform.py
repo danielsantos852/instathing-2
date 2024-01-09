@@ -1,5 +1,9 @@
 # Imports
-import config as cfg
+
+# Internal imports
+from .context import config as cfg
+from helpers import import_xml_as_df
+                     
 from utils import (df_from_xml, 
                    refine_df, 
                    gen_ig_story_imgs_for_df, 
