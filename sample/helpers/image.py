@@ -5,7 +5,7 @@ import pyautogui
 from pyscreeze import Box
 
 # Internal imports
-from context import config as cfg
+from .context import config as cfg
 
 
 # Global Variables
