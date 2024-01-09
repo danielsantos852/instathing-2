@@ -1,4 +1,4 @@
-# Context file for ./tests/
+# Context file for ./sample/core/
 
 # Python imports
 import os
@@ -11,4 +11,4 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 # Internal imports
 import docs.config as config
-from sample import *
+from helpers import *
